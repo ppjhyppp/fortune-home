@@ -39,7 +39,6 @@
     video.playsInline = true;
     video.setAttribute("preload", "metadata");
     video.pause();
-    video.currentTime = 0;
 
     // Create play button overlay
     var wrapper = video.parentElement;
