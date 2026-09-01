@@ -232,6 +232,27 @@ img[data-img].loaded{opacity:1}
   border-radius:3px;
 }
 
+/* ===== Product Count Button ===== */
+.product-count-btn{
+  background:var(--bg2);
+  border-radius:8px;
+  border:1px dashed var(--accent);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:default;
+  user-select:none;
+  min-height:260px;
+  transition:all .3s ease;
+}
+.product-count-btn .count-text{
+  font-family:var(--heading-font);
+  font-size:16px;
+  font-weight:700;
+  color:var(--accent);
+  letter-spacing:.05em;
+}
+
 /* ===== Brand Story ===== */
 .brand-story{
   position:relative;
@@ -376,6 +397,8 @@ footer{
   .category-header{flex-direction:column;align-items:flex-start;gap:8px}
   .category-desc{text-align:left;max-width:100%}
   .product-grid{grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px}
+  .product-count-btn{min-height:200px}
+  .product-count-btn .count-text{font-size:14px}
   .brand-story{padding:80px 20px}
   .brand-values{gap:30px}
   .footer-content{grid-template-columns:1fr 1fr;gap:30px}
@@ -385,6 +408,8 @@ footer{
 
 @media(max-width:480px){
   .product-grid{grid-template-columns:repeat(2,1fr)}
+  .product-count-btn{min-height:180px}
+  .product-count-btn .count-text{font-size:13px}
   .footer-content{grid-template-columns:1fr}
   .hero-cta{padding:12px 28px;font-size:12px}
 }
@@ -475,6 +500,9 @@ footer{
         <div class="product-img-wrap"><img data-img="Professional product photo of a white ceramic mug, clean white background, studio lighting, e-commerce style, centered" alt="陶瓷马克杯"></div>
         <div class="product-info"><div class="product-name">陶瓷马克杯</div><div class="product-desc">温润釉面，手感舒适，大容量</div></div>
       </div>
+      <div class="product-count-btn">
+        <div class="count-text">共86款产品</div>
+      </div>
     </div>
   </div>
 </section>
@@ -516,6 +544,9 @@ footer{
       <div class="product-card reveal reveal-delay-1">
         <div class="product-img-wrap"><img data-img="Professional product photo of a set of storage organizer boxes in neutral colors, clean white background, studio lighting, e-commerce style, centered" alt="收纳套装"></div>
         <div class="product-info"><div class="product-name">收纳整理套装</div><div class="product-desc">多尺寸组合，折叠收纳，整洁有序</div></div>
+      </div>
+      <div class="product-count-btn">
+        <div class="count-text">共52款产品</div>
       </div>
     </div>
   </div>
@@ -559,6 +590,9 @@ footer{
         <div class="product-img-wrap"><img data-img="Professional product photo of a retro green desk lamp with metal shade, clean white background, studio lighting, e-commerce style, centered" alt="复古绿台灯"></div>
         <div class="product-info"><div class="product-name">复古绿台灯</div><div class="product-desc">复古墨绿配色，工业风设计</div></div>
       </div>
+      <div class="product-count-btn">
+        <div class="count-text">共43款产品</div>
+      </div>
     </div>
   </div>
 </section>
@@ -601,6 +635,9 @@ footer{
         <div class="product-img-wrap"><img data-img="Professional product photo of a leather travel wallet passport holder in brown, clean white background, studio lighting, e-commerce style, centered" alt="旅行收纳包"></div>
         <div class="product-info"><div class="product-name">真皮旅行收纳包</div><div class="product-desc">头层牛皮，多卡位设计，护照证件</div></div>
       </div>
+      <div class="product-count-btn">
+        <div class="count-text">共22款产品</div>
+      </div>
     </div>
   </div>
 </section>
@@ -642,6 +679,9 @@ footer{
       <div class="product-card reveal reveal-delay-1">
         <div class="product-img-wrap"><img data-img="Professional product photo of dried goji berries in a glass jar, clean white background, studio lighting, e-commerce style, centered" alt="枸杞"></div>
         <div class="product-info"><div class="product-name">宁夏中宁枸杞</div><div class="product-desc">原产地直供，粒大肉厚，甘甜滋补</div><span class="product-tag">直供</span></div>
+      </div>
+      <div class="product-count-btn">
+        <div class="count-text">共16款产品</div>
       </div>
     </div>
   </div>
