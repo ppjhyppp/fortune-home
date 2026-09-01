@@ -152,7 +152,7 @@ nav a:hover::after{width:100%}
   max-width:1200px;margin:0 auto;padding:0 40px;
 }
 .category-header{
-  display:flex;align-items:flex-end;gap:20px;
+  display:flex;flex-direction:column;align-items:flex-start;
   margin-bottom:48px;
   padding-bottom:20px;
   border-bottom:2px solid var(--rule);
@@ -161,8 +161,9 @@ nav a:hover::after{width:100%}
   font-family:var(--heading-font);font-weight:700;
   font-size:48px;line-height:1;color:var(--accent);
   opacity:.35;
+  margin-bottom:8px;
 }
-.category-title-wrap{flex:1}
+.category-title-wrap{}
 .category-title-wrap h2{
   font-family:var(--heading-font);font-weight:700;
   font-size:clamp(24px,3.5vw,36px);
@@ -171,11 +172,12 @@ nav a:hover::after{width:100%}
 .category-title-en{
   font-family:var(--heading-font);font-size:12px;font-weight:400;
   letter-spacing:.3em;color:var(--accent);text-transform:uppercase;
-  margin-top:4px;
+  margin-top:8px;
 }
 .category-desc{
-  font-size:14px;color:var(--muted);max-width:320px;
+  font-size:14px;color:var(--muted);
   line-height:1.6;text-align:left;
+  margin-top:16px;
 }
 
 /* ===== Product Grid ===== */
