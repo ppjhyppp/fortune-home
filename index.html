@@ -426,10 +426,12 @@ footer{
 .fs-image-wrap{position:relative}
 .fs-image-main{
   width:100%;
+  aspect-ratio:16/10;
   border-radius:14px;
   overflow:hidden;
   position:relative;
   box-shadow:0 10px 36px rgba(0,0,0,0.3);
+  background:#111;
 }
 .fs-image-main img{
   position:absolute;inset:0;
@@ -437,7 +439,6 @@ footer{
   object-fit:contain;
   opacity:0;
   transition:opacity .5s ease;
-  background:#111;
 }
 .fs-image-main img.active{opacity:1}
 .fs-thumbs{
