@@ -376,19 +376,22 @@ footer{
   .bv-grid-reverse .bv-image{order:0}
 }
 
-/* ===== Feature Showcase (横屏内容) ===== */
+/* ===== Feature Showcase (全屏轮播) ===== */
 .feature-showcase{
   position:relative;
   background:var(--ink);
-  padding:100px 40px 80px;
   overflow:hidden;
 }
 .feature-showcase::before{
   content:'';
   position:absolute;top:0;left:0;right:0;height:1px;
   background:linear-gradient(90deg,transparent,rgba(255,107,0,0.3),transparent);
+  z-index:10;
 }
-.fs-header{text-align:center;margin-bottom:60px}
+.fs-header{
+  text-align:center;
+  padding:80px 40px 40px;
+}
 .fs-tag{
   font-family:var(--heading-font);font-size:12px;
   letter-spacing:.3em;text-transform:uppercase;
@@ -405,84 +408,143 @@ footer{
   margin-top:16px;max-width:640px;margin-left:auto;margin-right:auto;
   line-height:1.8;
 }
-.fs-grid{
-  max-width:1200px;margin:0 auto;
-  display:grid;grid-template-columns:repeat(4,1fr);
-  gap:20px;
-}
-.fs-card{
+
+/* Slider */
+.fs-slider{
   position:relative;
-  border-radius:12px;
+  width:100%;
   overflow:hidden;
-  aspect-ratio:3/4;
-  cursor:pointer;
-  transition:transform .4s cubic-bezier(.25,.46,.45,.94),box-shadow .4s ease;
 }
-.fs-card:hover{
-  transform:translateY(-8px) scale(1.02);
-  box-shadow:0 16px 48px rgba(0,0,0,0.4);
+.fs-track{
+  display:flex;
+  transition:transform .6s cubic-bezier(.4,0,.2,1);
+  will-change:transform;
 }
-.fs-card-bg{
+.fs-slide{
+  flex:0 0 100%;
+  position:relative;
+  height:70vh;
+  min-height:480px;
+  max-height:640px;
+}
+.fs-slide-bg{
   position:absolute;inset:0;
-  background-size:cover;background-position:center;
-  transition:transform .6s ease;
+  background-size:cover;
+  background-position:center;
 }
-.fs-card:hover .fs-card-bg{transform:scale(1.08)}
-.fs-card-overlay{
+.fs-slide-overlay{
   position:absolute;inset:0;
-  background:linear-gradient(180deg,rgba(0,0,0,0.2) 0%,rgba(0,0,0,0.5) 50%,rgba(0,0,0,0.85) 100%);
+  background:linear-gradient(135deg,rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 50%,rgba(0,0,0,0.6) 100%);
 }
-.fs-card-content{
-  position:absolute;bottom:0;left:0;right:0;
-  padding:24px 20px;
+.fs-slide-content{
+  position:relative;z-index:2;
+  height:100%;
+  display:flex;align-items:center;
+  padding:0 8%;
 }
-.fs-card-icon{
+.fs-slide-inner{
+  max-width:520px;
+}
+.fs-slide-num{
+  font-family:var(--heading-font);
+  font-size:14px;font-weight:700;
+  color:var(--accent);
+  letter-spacing:.1em;
+  margin-bottom:16px;
+}
+.fs-slide-icon{
   display:inline-flex;align-items:center;justify-content:center;
-  width:40px;height:40px;border-radius:10px;
+  width:56px;height:56px;border-radius:14px;
   background:var(--accent);
-  margin-bottom:12px;
-  font-size:18px;
+  margin-bottom:20px;
+  font-size:24px;
 }
-.fs-card-title{
+.fs-slide-title{
   font-family:var(--heading-font);font-weight:700;
-  font-size:18px;color:#fff;
-  margin-bottom:6px;letter-spacing:.03em;
+  font-size:clamp(32px,5vw,52px);
+  color:#fff;
+  margin-bottom:8px;
+  letter-spacing:.02em;
+  line-height:1.2;
 }
-.fs-card-en{
-  font-family:var(--heading-font);font-size:10px;
-  letter-spacing:.2em;text-transform:uppercase;
-  color:rgba(255,255,255,0.5);margin-bottom:10px;
+.fs-slide-en{
+  font-family:var(--heading-font);font-size:13px;
+  letter-spacing:.25em;text-transform:uppercase;
+  color:rgba(255,255,255,0.4);
+  margin-bottom:20px;
 }
-.fs-card-desc{
-  font-size:12px;color:rgba(255,255,255,0.75);
-  line-height:1.6;
+.fs-slide-desc{
+  font-size:16px;
+  color:rgba(255,255,255,0.8);
+  line-height:1.8;
+  margin-bottom:28px;
 }
-.fs-card-arrow{
-  position:absolute;top:16px;right:16px;
-  width:32px;height:32px;border-radius:50%;
-  background:rgba(255,255,255,0.15);
-  display:flex;align-items:center;justify-content:center;
-  font-size:14px;color:#fff;
+.fs-slide-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:12px 28px;
+  border:2px solid var(--accent);
+  border-radius:8px;
+  font-family:var(--heading-font);font-size:14px;font-weight:700;
+  color:var(--accent);
+  letter-spacing:.05em;
+  cursor:pointer;
   transition:all .3s ease;
 }
-.fs-card:hover .fs-card-arrow{
-  background:var(--accent);transform:translateX(4px);
+.fs-slide-btn:hover{
+  background:var(--accent);
+  color:#fff;
 }
 
-@media(max-width:900px){
-  .feature-showcase{padding:60px 20px 50px}
-  .fs-grid{
-    grid-template-columns:repeat(2,1fr);
-    gap:16px;
-  }
-  .fs-card{aspect-ratio:3/3.5}
+/* Dots */
+.fs-dots{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  padding:30px 0 60px;
 }
-@media(max-width:560px){
-  .fs-grid{
-    grid-template-columns:1fr;
-    gap:16px;
-  }
-  .fs-card{aspect-ratio:16/10}
+.fs-dot{
+  width:10px;height:10px;
+  border-radius:50%;
+  background:rgba(255,255,255,0.2);
+  cursor:pointer;
+  transition:all .3s ease;
+}
+.fs-dot.active{
+  background:var(--accent);
+  width:32px;
+  border-radius:5px;
+}
+
+/* Arrows */
+.fs-arrow{
+  position:absolute;top:50%;
+  transform:translateY(-50%);
+  width:48px;height:48px;
+  border-radius:50%;
+  background:rgba(255,255,255,0.1);
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;color:#fff;
+  cursor:pointer;
+  transition:all .3s ease;
+  z-index:5;
+  border:1px solid rgba(255,255,255,0.15);
+}
+.fs-arrow:hover{
+  background:var(--accent);
+  border-color:var(--accent);
+}
+.fs-arrow-left{left:30px}
+.fs-arrow-right{right:30px}
+
+@media(max-width:900px){
+  .fs-header{padding:60px 20px 30px}
+  .fs-slide{height:60vh;min-height:380px}
+  .fs-slide-content{padding:0 24px}
+  .fs-slide-inner{max-width:100%}
+  .fs-slide-desc{font-size:14px}
+  .fs-arrow{width:40px;height:40px;font-size:16px}
+  .fs-arrow-left{left:12px}
+  .fs-arrow-right{right:12px}
 }
 
 /* ===== Scroll Animations ===== */
@@ -583,50 +645,72 @@ footer{
     <h2 class="fs-title">不一样的<span>家居购物平台</span></h2>
     <p class="fs-subtitle">方寸间，不只是选购家居好物。我们融合特色购物、电影、音乐与哲学文化，打造一个有温度、有深度的生活方式平台。</p>
   </div>
-  <div class="fs-grid">
-    <div class="fs-card reveal">
-      <div class="fs-card-bg" style="background-image:url('./assets/feature-shop.jpg')"></div>
-      <div class="fs-card-overlay"></div>
-      <div class="fs-card-arrow">→</div>
-      <div class="fs-card-content">
-        <div class="fs-card-icon">🛍</div>
-        <div class="fs-card-title">特色购</div>
-        <div class="fs-card-en">FEATURED SHOP</div>
-        <p class="fs-card-desc">精选珐琅锅、壁画、马克杯套装等品质好物，线下门店实景展示，每件商品都经过用心甄选。</p>
+  <div class="fs-slider" id="fsSlider">
+    <div class="fs-arrow fs-arrow-left" onclick="fsMove(-1)">‹</div>
+    <div class="fs-arrow fs-arrow-right" onclick="fsMove(1)">›</div>
+    <div class="fs-track" id="fsTrack">
+      <div class="fs-slide">
+        <div class="fs-slide-bg" style="background-image:url('./assets/feature-shop.jpg')"></div>
+        <div class="fs-slide-overlay"></div>
+        <div class="fs-slide-content">
+          <div class="fs-slide-inner">
+            <div class="fs-slide-num">01 / 04</div>
+            <div class="fs-slide-icon">🛍</div>
+            <h3 class="fs-slide-title">特色购</h3>
+            <div class="fs-slide-en">FEATURED SHOP</div>
+            <p class="fs-slide-desc">精选珐琅锅、壁画、马克杯套装等品质好物，线下门店实景展示，每件商品都经过用心甄选。从厨房到客厅，从餐具到装饰，方寸间为你打造一站式家居购物体验。</p>
+            <div class="fs-slide-btn">进入特色购 →</div>
+          </div>
+        </div>
+      </div>
+      <div class="fs-slide">
+        <div class="fs-slide-bg" style="background-image:url('./assets/feature-movie.jpg')"></div>
+        <div class="fs-slide-overlay"></div>
+        <div class="fs-slide-content">
+          <div class="fs-slide-inner">
+            <div class="fs-slide-num">02 / 04</div>
+            <div class="fs-slide-icon">🎬</div>
+            <h3 class="fs-slide-title">电影</h3>
+            <div class="fs-slide-en">CINEMA</div>
+            <p class="fs-slide-desc">策展式电影体验，从《野马分鬃》到《妖猫传》，用艺术插画与文学化简介，带你走进每一部好电影。不是算法推荐，而是用心挑选，每一部都值得静下心来品味。</p>
+            <div class="fs-slide-btn">进入电影栏目 →</div>
+          </div>
+        </div>
+      </div>
+      <div class="fs-slide">
+        <div class="fs-slide-bg" style="background-image:url('./assets/feature-music.jpg')"></div>
+        <div class="fs-slide-overlay"></div>
+        <div class="fs-slide-content">
+          <div class="fs-slide-inner">
+            <div class="fs-slide-num">03 / 04</div>
+            <div class="fs-slide-icon">🎵</div>
+            <h3 class="fs-slide-title">音乐</h3>
+            <div class="fs-slide-en">MUSIC</div>
+            <p class="fs-slide-desc">黑胶唱片式的沉浸听觉，从大陆摇滚黄金年代到当代独立音乐，用音乐丈量生活的方寸之间。每一首歌都是一段故事，每一段旋律都是一次心灵的对话。</p>
+            <div class="fs-slide-btn">进入音乐栏目 →</div>
+          </div>
+        </div>
+      </div>
+      <div class="fs-slide">
+        <div class="fs-slide-bg" style="background-image:url('./assets/feature-culture.jpg')"></div>
+        <div class="fs-slide-overlay"></div>
+        <div class="fs-slide-content">
+          <div class="fs-slide-inner">
+            <div class="fs-slide-num">04 / 04</div>
+            <div class="fs-slide-icon">📖</div>
+            <h3 class="fs-slide-title">哲学·宗教与科学</h3>
+            <div class="fs-slide-en">PHILOSOPHY & SCIENCE</div>
+            <p class="fs-slide-desc">在方寸之间，探索人类终极命题。从佛像到十字架，从经典文献到深度阅读，安放精神的栖息地。不只是购物，更是一场关于生命、信仰与智慧的旅程。</p>
+            <div class="fs-slide-btn">进入哲学栏目 →</div>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="fs-card reveal reveal-delay-1">
-      <div class="fs-card-bg" style="background-image:url('./assets/feature-movie.jpg')"></div>
-      <div class="fs-card-overlay"></div>
-      <div class="fs-card-arrow">→</div>
-      <div class="fs-card-content">
-        <div class="fs-card-icon">🎬</div>
-        <div class="fs-card-title">电影</div>
-        <div class="fs-card-en">CINEMA</div>
-        <p class="fs-card-desc">策展式电影体验，从《野马分鬃》到《妖猫传》，用艺术插画与文学化简介，带你走进每一部好电影。</p>
-      </div>
-    </div>
-    <div class="fs-card reveal reveal-delay-2">
-      <div class="fs-card-bg" style="background-image:url('./assets/feature-music.jpg')"></div>
-      <div class="fs-card-overlay"></div>
-      <div class="fs-card-arrow">→</div>
-      <div class="fs-card-content">
-        <div class="fs-card-icon">🎵</div>
-        <div class="fs-card-title">音乐</div>
-        <div class="fs-card-en">MUSIC</div>
-        <p class="fs-card-desc">黑胶唱片式的沉浸听觉，从大陆摇滚黄金年代到当代独立音乐，用音乐丈量生活的方寸之间。</p>
-      </div>
-    </div>
-    <div class="fs-card reveal reveal-delay-2">
-      <div class="fs-card-bg" style="background-image:url('./assets/feature-culture.jpg')"></div>
-      <div class="fs-card-overlay"></div>
-      <div class="fs-card-arrow">→</div>
-      <div class="fs-card-content">
-        <div class="fs-card-icon">📖</div>
-        <div class="fs-card-title">哲学·宗教与科学</div>
-        <div class="fs-card-en">PHILOSOPHY & SCIENCE</div>
-        <p class="fs-card-desc">在方寸之间，探索人类终极命题。从佛像到十字架，从经典文献到深度阅读，安放精神的栖息地。</p>
-      </div>
+    <div class="fs-dots" id="fsDots">
+      <div class="fs-dot active" onclick="fsGoTo(0)"></div>
+      <div class="fs-dot" onclick="fsGoTo(1)"></div>
+      <div class="fs-dot" onclick="fsGoTo(2)"></div>
+      <div class="fs-dot" onclick="fsGoTo(3)"></div>
     </div>
   </div>
 </section>
@@ -961,7 +1045,31 @@ footer{
   </div>
 </footer>
 
-<script src="./main.js?v=4"></script>
+<script>
+var fsCurrent=0;
+var fsTotal=4;
+var fsTimer=null;
+function fsGoTo(i){
+  fsCurrent=(i+fsTotal)%fsTotal;
+  document.getElementById('fsTrack').style.transform='translateX(-'+fsCurrent*100+'%)';
+  var dots=document.querySelectorAll('.fs-dot');
+  dots.forEach(function(d,j){d.classList.toggle('active',j===fsCurrent)});
+}
+function fsMove(dir){fsGoTo(fsCurrent+dir);resetFsTimer()}
+function resetFsTimer(){
+  if(fsTimer)clearInterval(fsTimer);
+  fsTimer=setInterval(function(){fsGoTo(fsCurrent+1)},6000);
+}
+document.addEventListener('DOMContentLoaded',function(){
+  resetFsTimer();
+  var slider=document.getElementById('fsSlider');
+  if(slider){
+    slider.addEventListener('mouseenter',function(){if(fsTimer)clearInterval(fsTimer)});
+    slider.addEventListener('mouseleave',function(){resetFsTimer()});
+  }
+});
+</script>
+<script src="./main.js?v=5"></script>
 
 </body>
 </html>
